@@ -104,7 +104,7 @@ class StaticCdn(Cdn):
     def __css(self, style: str, use_min: bool) -> str:
         min_str = '.min' if use_min else ''
         resource = 'css/{}{}.css'.format(style, min_str)
-        return '<link href="{}" rel="stylesheet">'.format(self.__url(resource))
+        return '<link rel="preload" href="{}" rel="stylesheet" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">'.format(self.__url(resource))
 
     def __js(self, style: str, use_min: bool) -> str:
         min_str = '.min' if use_min else ''
